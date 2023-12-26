@@ -1,1 +1,7 @@
+.movieItem {
+    cursor: pointer;
+}
 
+.movieItem:hover {
+    background-color: rgb(83, 161, 200); /* Change the background color on hover */
+}
