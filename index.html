@@ -1,161 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Movie Selector</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
+<html lang="english">
+    <head>
+        <title>Movie Selector</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="movieSelector.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Movie Selector</h1>
+        </div>
 
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        <div class="input-container">
+            <input type="text" id="movieInput" placeholder="Enter movie name" style="font-size: 25px;" onkeydown="if(event.keyCode === 13) printMovieName()">
+                <!-- <button class = "button" onclick="printMovieName()">
+                    Submit
+                </button> -->
+        </div>
 
-        .input-container {
-            text-align: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+        <div class = "input-container" >
+            <button class = "button" onclick="selectRandomMovie()">
+                Select Movie
+            </button>
+        </div>
 
-        #movieInput {
-            margin-right: 10px;
-        }
+        <div id="movieList" display= "flex" flex-direction="column" align-items="center" justify-content="center" height="100vh" margin="0" style="display: flex">
+            <!-- Movies will be added here as div elements -->
+        </div>
 
-        #movieList {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .movieItem {
-            display: flex;
-            justify-content: space-between; /* Center items horizontally and create space between them */
-            align-items: center; /* Center items vertically */
-            margin: 5px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .removeButton {
-            background-color: #ff0000;
-            color: #fff;
-            padding: 2px 5px;
-            border-radius: 0 5px 0 5px;
-            cursor: pointer;
-        }
-
-        #selectButton {
-            margin-top: 10px;
-            padding: 5px 10px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            z-index: 1000;
-        }
-
-        #popupClose {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Movie Selector</h1>
-    </div>
-
-    <div class="input-container">
-        <input type="text" id="movieInput" placeholder="Enter movie name">
-        <button onclick="printMovieName()">Submit</button>
-    </div>
-
-    <div class = "input-container">
-        <button onclick="selectRandomMovie()">
-            Select Movie
-        </button>
-    </div>
-
-    <div id="movieList" display= "flex" flex-direction="column" align-items="center" justify-content="center" height="100vh" margin="0" style="display: flex">
-        <!-- Movies will be added here as div elements -->
-    </div>
-
-    <div id="popup">
-        <span id="popupClose" onclick="closePopup()">X</span>
-        <p id="popupContent"></p>
-    </div>
-
-    <script>
-        function removeMovie(index) {
-            var movieListContainer = document.getElementById("movieList");
-            movieListContainer.removeChild(movieListContainer.childNodes[index]);
-        }
-
-        function printMovieName() {
-            var movieInput = document.getElementById("movieInput");
-            var movieListContainer = document.getElementById("movieList");
-            var enteredMovies = movieInput.value.split(",").map(movie => movie.trim()); // Trim spaces around movie names
-
-            if (enteredMovies.length > 0 && enteredMovies[0] !== "") {
-                for (var i = 0; i < enteredMovies.length; i++) {
-                    var movieItem = document.createElement("div");
-                    movieItem.className = "movieItem"; // Add a class for styling
-
-                    var removeButton = document.createElement("div");
-                    removeButton.className = "removeButton";
-                    removeButton.textContent = "x";
-                    removeButton.onclick = (function (index) {
-                        return function () {
-                            removeMovie(index);
-                        };
-                    })(i);
-
-                    var movieName = document.createElement("div");
-                    movieName.textContent = enteredMovies[i];
-
-                    movieItem.appendChild(movieName);
-                    movieItem.appendChild(removeButton);
-                    movieListContainer.appendChild(movieItem); // Append each movie as a new div element
-                }
-            } else {
-                movieListContainer.innerHTML = "Please enter at least one movie name."; // Provide a message if no movies are entered
-            }
-
-            movieInput.value = ""; // Clear the input field
-        }
-
-        function selectRandomMovie() {
-            var movieListContainer = document.getElementById("movieList");
-            var movies = movieListContainer.getElementsByClassName("movieItem");
-
-            if (movies.length > 0) {
-                var randomIndex = Math.floor(Math.random() * movies.length);
-                var randomMovie = movies[randomIndex].getElementsByTagName("div")[0].textContent;
-
-                document.getElementById("popupContent").textContent = "Selected Movie: " + randomMovie;
-                document.getElementById("popup").style.display = "block";
-            } else {
-                alert("Please add movies before selecting one.");
-            }
-        }
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-    </script>
-</body>
+        <div id="popup">
+            <span id="popupClose" onclick="closePopup()">X</span>
+            <p id="popupContent"></p>
+        </div>
+    </body>
 </html>
