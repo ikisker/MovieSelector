@@ -1,14 +1,14 @@
 :root {
-    --main-background-color: #07575B; /* Deep Ocean Blue */
-    --hover-color: #0E7E87; /* Dark Aqua */
-    --button-background-color: #3E9AA8; /* Turquoise Blue */
-    --button-border-color: #1F3D44; /* Dark Teal */
-    --header-color: #92CAD1; /* Light Aqua */
-    --movie-item-background: #166678; /* Dark Ocean Blue */
-    --remove-button-color: #C94D4D; /* Coral Red */
-    --popup-background-color: #1E2A2F; /* Dark Slate */
-    --popup-border-color: #457385; /* Sea Blue */
-    --text-color: #E6EFEF; /* Ivory White */
+    --main-background-color: #1E2A38; /* Dark Blue-Gray */
+    --hover-color: #324253; /* Slightly Darker Blue-Gray */
+    --button-background-color: #354E65; /* Dark Slate Blue */
+    --button-border-color: #56738F; /* Steel Blue */
+    --header-color: #AABCC8; /* Light Steel Blue */
+    --movie-item-background: #526A7F; /* Slate Blue */
+    --remove-button-color: #9C3F3F; /* Dark Reddish Brown */
+    --popup-background-color: #354F65; /* Dark Slate Blue */
+    --popup-border-color: #738FA6; /* Steel Blue */
+    --text-color: #D1DDE7; /* Light Grey Blue */
 }
 
 
@@ -68,7 +68,7 @@ body {
 }
 
 .movieItem {
-    background-color: var(--accent-color-2);
+    background-color: var(--movie-item-background);
     display: flex;
     justify-content: space-between;
     align-items: center;
